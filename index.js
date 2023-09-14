@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import archiveRouter from './router/archive.js';
 import tipRouter from './router/tip.js';
+import historyRouter from './router/history.js';
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use((err, req, res, next) => {
 // 사용할 라우터 호출 메서드
 app.use('/api/v1/archive', archiveRouter);
 app.use('/api/v1/tip', tipRouter);
+app.use('/api/v1/history', historyRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
