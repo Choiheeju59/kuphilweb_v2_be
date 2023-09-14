@@ -1,5 +1,4 @@
 import mysql from "mysql2";
-// import dbInfo from '../databaseInfo';
 import dotenv from 'dotenv';
 
 dotenv.config();
