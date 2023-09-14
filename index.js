@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import promisePool from './db/database.js';
 import archiveRouter from './router/archive.js';
 
 

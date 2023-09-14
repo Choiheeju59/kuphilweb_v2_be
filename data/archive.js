@@ -52,20 +52,20 @@ export async function getConcertConductor(num){
 export async function getProgramByComposer(num){
     return db
         .execute(
-            `SELECT p.program_num, p.composer ${FROM_PROGRAM} ${JOIN_PROGRAM} where p.concert_id = 1;`, [parseInt(num)]
+            `SELECT p.program_num, p.composer ${FROM_PROGRAM} where p.concert_id = ?;`, [parseInt(num)]
         )
-        .then((result) => result[0][0])
+        .then((result) => result[0])
         .catch((error) => 
             console.log(`Error Message : ${error}, Date: ${new Date()}`)
         );
 }
 
-export async function getProgramByTitle(){
+export async function getProgramByTitle(num){
     return db
         .execute(
-            `p.program_num, p.program ${FROM_PROGRAM} ${JOIN_PROGRAM} where p.concert_id = 1;`
+            `SELECT p.program_num, p.program ${FROM_PROGRAM} where p.concert_id = 1;`, [parseInt(num)]
         )
-        .then((result) => result[0][0])
+        .then((result) => result[0])
         .catch((error) => 
             console.log(`Error Message : ${error}, Date: ${new Date()}`)
         );
