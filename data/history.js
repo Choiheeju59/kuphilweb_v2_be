@@ -14,13 +14,13 @@ export async function getAllHistory(){
     );
 }
 
-export async function getHistoryByYear(year){
-    return db
-    .execute(
-        `${SELECT} ${FROM} where year = ?`, [parseInt(year)]
-    )
-    .then((result) => result[0])
-    .catch((error) =>
-        console.log(`Error Message : ${error}, Date : ${new Date()}`)
-    );
-}
+// export async function getHistoryByYear(year){
+//     return db
+//     .execute(
+//         `${SELECT} ${FROM} where year = ?`, [parseInt(year)]
+//     )
+//     .then((result) => result[0])
+//     .catch((error) =>
+//         console.log(`Error Message : ${error}, Date : ${new Date()}`)
+//     );
+// }

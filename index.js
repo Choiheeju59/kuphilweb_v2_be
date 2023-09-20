@@ -10,8 +10,7 @@ const app = express();
 
 
 var corsOptions = {
-  //origin : 'http://192.168.0.1:8888'
-  origin: "*/",
+  origin: "*/"
 };
 
 app.use(cors(corsOptions));
