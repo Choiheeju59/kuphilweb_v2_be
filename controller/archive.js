@@ -1,14 +1,11 @@
 import * as archiveRepository from '../data/archive.js';
 
-export async function getArcNum(req, res, next){
+export async function getConcertInfo(req, res, next){
     const num = req.query.num;
     
-    console.log(num);
-    if (!num) {
-        return res.sendStatus(404);
-    }
-
-    const data = await archiveRepository.getConcertNum(num);
+    const data = await (num
+        ? archiveRepository.getConcertNum(num)
+        : archiveRepository.getAllArchiveInformation());
     res.status(200).json(data);
 }
 

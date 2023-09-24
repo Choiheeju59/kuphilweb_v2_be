@@ -4,14 +4,15 @@ import morgan from "morgan";
 import archiveRouter from './router/archive.js';
 import tipRouter from './router/tip.js';
 import historyRouter from './router/history.js';
+import gamecenterRouter from './router/gamecenter.js';
+import restaurantRouter from './router/restaurant.js';
 
 
 const app = express();
 
 
 var corsOptions = {
-  //origin : 'http://192.168.0.1:8888'
-  origin: "*/",
+  origin: "http://localhost:8888"
 };
 
 app.use(cors(corsOptions));
@@ -35,6 +36,8 @@ app.use((err, req, res, next) => {
 app.use('/api/v1/archive', archiveRouter);
 app.use('/api/v1/tip', tipRouter);
 app.use('/api/v1/history', historyRouter);
+app.use('/api/v1/gamecenter', gamecenterRouter);
+app.use('/api/v1/restaurant', restaurantRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';

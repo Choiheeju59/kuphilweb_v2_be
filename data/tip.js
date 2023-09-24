@@ -3,7 +3,7 @@ import db from '../db/database.js';
 export async function getTenTips(){
     return db
         .execute(
-            `SELECT * FROM tip ORDER BY RAND() LIMIT 10;`
+            `SELECT tip FROM tip ORDER BY RAND() LIMIT 1;`
         )
-        .then((result)=>result[0])
+        .then((result)=>result[0][0])
 }
