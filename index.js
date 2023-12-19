@@ -6,7 +6,7 @@ import tipRouter from './router/tip.js';
 import historyRouter from './router/history.js';
 import gamecenterRouter from './router/gamecenter.js';
 import restaurantRouter from './router/restaurant.js';
-
+import worldcupRouter from './router/worldcup.js';
 
 const app = express();
 
@@ -38,6 +38,7 @@ app.use('/api/v1/tip', tipRouter);
 app.use('/api/v1/history', historyRouter);
 app.use('/api/v1/gamecenter', gamecenterRouter);
 app.use('/api/v1/restaurant', restaurantRouter);
+app.use('/api/v1/worldcup', worldcupRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
