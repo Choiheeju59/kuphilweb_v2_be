@@ -36,9 +36,9 @@ app.use((err, req, res, next) => {
 app.use('/api/v1/archive', archiveRouter);
 app.use('/api/v1/tip', tipRouter);
 app.use('/api/v1/history', historyRouter);
-app.use('/api/v1/gamecenter', gamecenterRouter);
-app.use('/api/v1/restaurant', restaurantRouter);
-app.use('/api/v1/worldcup', worldcupRouter);
+app.use('/api/v1/etc/gamecenter', gamecenterRouter);
+app.use('/api/v1/etc/restaurant', restaurantRouter);
+app.use('/api/v1/etc/worldcup', worldcupRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
