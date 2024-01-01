@@ -1,13 +1,13 @@
 import * as worldcupRepository from '../data/worldcup.js';
 
 export async function getWorldcupOfComposer(req, res, next){
-    const num = req.query.num;
+    const round = req.query.round;
 
-    console.log(num);
-    if (!num){
+    console.log(round);
+    if (!round){
         return res.sendStatus(404);
     }
     
-    const data = await worldcupRepository.getComposersName(num);
+    const data = await worldcupRepository.getComposersName(round);
     res.status(200).json(data);
 }
