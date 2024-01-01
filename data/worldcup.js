@@ -1,9 +1,9 @@
 import db from '../db/database.js';
 
-export async function getComposersName(round){
+export async function getComposersName(round, gameId){
     return db
         .execute(
-            `SELECT title, semiTitle, img FROM worldcup ORDER BY RAND() LIMIT ${round};`
+            `SELECT title, semiTitle, img FROM worldcup where game_id = ${gameId} ORDER BY RAND() LIMIT ${round};`
         )
         .then((result)=>result[0])
         .catch((error)=> 
