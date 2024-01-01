@@ -3,3 +3,6 @@
 
 # misc
 .env
+router/history.js
+controller/history.js
+data/history.js

@@ -3,6 +3,6 @@ import * as WorldcupController from '../controller/worldcup.js';
 
 const router = express.Router();
 
-router.get('/round', WorldcupController.getWorldcupOfComposer);
+router.get('/', WorldcupController.getWorldcupOfComposer);
 
 export default router;
