@@ -10,7 +10,7 @@ import worldcupRouter from './router/worldcup.js';
 import examRouter from './router/exam.js';
 
 const app = express();
-
+app.use(express.json());
 
 var corsOptions = {
   origin: "http://localhost:3000"
