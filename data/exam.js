@@ -35,7 +35,7 @@ export async function caculateExamScore(examId, answers){
     if(!examQuestions){
       return null;
     }
-    let correctAnswerCount = 0;
+    let correctAnswerCount = 0; 
 
     examQuestions.forEach((question, index) => {
 
