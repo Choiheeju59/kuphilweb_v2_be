@@ -10,3 +10,5 @@ export async function getComposersName(round, gameId){
         console.log(`Error Message : ${error}, Date : ${new Date()}`)
     );
 }
+
+// 랭킹 받아오기
