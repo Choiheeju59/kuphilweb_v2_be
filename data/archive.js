@@ -36,9 +36,9 @@ export async function getConcertNum(num){
             youtube_url : program.youtube_url
         }));
 
-        const setSongtitles = [...new Set(programInfo.map(program => program.songtitle))];
-        const setComposers = [...new Set(programInfo.map(program => program.composer))];
-        const setYoutube_url = [...new Set(programInfo.map(program => program.youtube_url))];
+        const setSongtitles = [...programInfo.map(program => program.songtitle)];
+        const setComposers = [...programInfo.map(program => program.composer)];
+        const setYoutube_url = [...programInfo.map(program => program.youtube_url)];
 
         const formattedData = {
             id: concertData.id,
