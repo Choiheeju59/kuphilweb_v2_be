@@ -12,7 +12,7 @@ export async function getAllExamination(req, res, next){
     res.status(200).json(data);
 }
 
-export async function getExamScore(req, res, next){
+export async function postExamScore(req, res, next){
     const examId = req.query.examId;
     const answers = req.body;
     
