@@ -14,7 +14,7 @@ export async function getTitles(round, gameId){
 export async function postWorldcupResultData(id,gameId){
     return db 
     .execute(
-        `UPDATE worldcup SET win = 1 WHERE id = ${id} and game_id = ${gameId};` 
+        `UPDATE worldcup SET win = worldcup.win + 1 WHERE id = ${id} and game_id = ${gameId};` 
     )
     .then()
     .catch((error) => 
