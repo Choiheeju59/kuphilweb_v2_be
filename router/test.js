@@ -3,4 +3,6 @@ import * as testController from '../controller/test.js';
 
 const router = express.Router();
 
-router.get('/', )
+router.get('/', testController.getTest);
+
+export default router;
