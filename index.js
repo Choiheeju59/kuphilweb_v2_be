@@ -9,7 +9,6 @@ import restaurantRouter from './router/restaurant.js';
 import worldcupRouter from './router/worldcup.js';
 import examRouter from './router/exam.js';
 import testRouter from './router/test.js';
-import testRouter from './router/test.js';
 
 const app = express();
 app.use(express.json());
