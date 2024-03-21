@@ -9,12 +9,13 @@ import restaurantRouter from './router/restaurant.js';
 import worldcupRouter from './router/worldcup.js';
 import examRouter from './router/exam.js';
 import testRouter from './router/test.js';
+import quizRouter from './router/quiz.js';
 
 const app = express();
 app.use(express.json());
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://3.38.46.26:3000"
 };
 
 app.use(cors(corsOptions));
@@ -43,6 +44,7 @@ app.use('/api/v1/etc/restaurant', restaurantRouter);
 app.use('/api/v1/etc/worldcup', worldcupRouter);
 app.use('/api/v1/etc/exam', examRouter);
 app.use('/api/v1/etc/test', testRouter);
+app.use('/api/v1/etc/quiz', quizRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
