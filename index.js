@@ -10,6 +10,7 @@ import worldcupRouter from './router/worldcup.js';
 import examRouter from './router/exam.js';
 import testRouter from './router/test.js';
 import quizRouter from './router/quiz.js';
+import adminRouter from './router/admin.js';
 
 const app = express();
 app.use(express.json());
@@ -45,6 +46,7 @@ app.use('/api/v1/etc/worldcup', worldcupRouter);
 app.use('/api/v1/etc/exam', examRouter);
 app.use('/api/v1/etc/test', testRouter);
 app.use('/api/v1/etc/quiz', quizRouter);
+app.use('/api/v1/admin', adminRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
