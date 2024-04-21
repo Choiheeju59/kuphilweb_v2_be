@@ -17,7 +17,7 @@ app.use(express.json());
 
 var corsOptions = {
   origin: function (origin, callback) {
-    var allowedOrigins = ['http://localhost:3000', 'http://example.com']; // 허용하고자 하는 origin들의 목록을 정의합니다.
+    var allowedOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2]; // 허용하고자 하는 origin들의 목록을 정의합니다.
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
