@@ -16,8 +16,16 @@ const app = express();
 app.use(express.json());
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: function (origin, callback) {
+    var allowedOrigins = ['http://localhost:3000', 'http://example.com']; // 허용하고자 하는 origin들의 목록을 정의합니다.
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 };
+
 
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
