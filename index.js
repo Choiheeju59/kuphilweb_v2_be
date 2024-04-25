@@ -17,7 +17,8 @@ app.use(express.json());
 
 var corsOptions = {
   origin: function (origin, callback) {
-    var allowedOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2]; // 허용하고자 하는 origin들의 목록을 정의합니다.
+    var allowedOrigins = [process.env.ORIGIN_1, process.env.ORIGIN_2];
+    if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -29,6 +30,19 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
+
+//404 에러처리
+app.use((error, req, res, next) => {
+  const err = new Error("NOT FOUND");
+  err.status = 404;
+  next(err);
+});
+
+//500 에러처리 미들웨어
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 
 // 사용할 라우터 호출 메서드
@@ -42,19 +56,6 @@ app.use('/api/v1/etc/exam', examRouter);
 app.use('/api/v1/etc/test', testRouter);
 app.use('/api/v1/etc/quiz', quizRouter);
 app.use('/api/v1/admin', adminRouter);
-
-// 올바른 404 처리 미들웨어
-app.use((req, res, next) => {
-  res.status(404).json({ error: "Not Found" });
-});
-
-// 올바른 500 에러 처리 미들웨어
-app.use((err, req, res, next) => {
-  res.status(err.status || 500).json({
-    error: "Internal Server Error",
-    details: err.message // 에러의 상세 정보를 제공합니다.
-  });
-});
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
