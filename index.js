@@ -31,6 +31,18 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
 
+// 사용할 라우터 호출 메서드
+app.use('/api/v1/archive', archiveRouter);
+app.use('/api/v1/tip', tipRouter);
+app.use('/api/v1/history', historyRouter);
+app.use('/api/v1/etc/gamecenter', gamecenterRouter);
+app.use('/api/v1/etc/restaurant', restaurantRouter);
+app.use('/api/v1/etc/worldcup', worldcupRouter);
+app.use('/api/v1/etc/exam', examRouter);
+app.use('/api/v1/etc/test', testRouter);
+app.use('/api/v1/etc/quiz', quizRouter);
+app.use('/api/v1/admin', adminRouter);
+
 //404 에러처리
 app.use((error, req, res, next) => {
   const err = new Error("NOT FOUND");
@@ -44,18 +56,6 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-
-// 사용할 라우터 호출 메서드
-app.use('/api/v1/archive', archiveRouter);
-app.use('/api/v1/tip', tipRouter);
-app.use('/api/v1/history', historyRouter);
-app.use('/api/v1/etc/gamecenter', gamecenterRouter);
-app.use('/api/v1/etc/restaurant', restaurantRouter);
-app.use('/api/v1/etc/worldcup', worldcupRouter);
-app.use('/api/v1/etc/exam', examRouter);
-app.use('/api/v1/etc/test', testRouter);
-app.use('/api/v1/etc/quiz', quizRouter);
-app.use('/api/v1/admin', adminRouter);
 
 const PORT = process.env.SERVER_PORT || 8888;
 const HOST = process.env.SERVER_HOST || 'localhost';
