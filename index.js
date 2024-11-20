@@ -47,13 +47,13 @@ app.use('/api/v1/admin', adminRouter);
 app.use((error, req, res, next) => {
   const err = new Error("NOT FOUND");
   err.status = 404;
-  next(err);
+  next(error);
 });
 
 //500 에러처리 미들웨어
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error');
+  res.json({"err": err});
 });
 
 
