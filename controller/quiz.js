@@ -4,9 +4,6 @@ export async function getQuizOrder(req, res, next){
     const quizId = req.query.quizId;
     const quizOrder = req.query.quizOrder;
 
-    console.log(quizId);
-    console.log(quizOrder);
-
     if(!quizId){
         return res.sendStatus(404);
     }
@@ -20,9 +17,8 @@ export async function getQuizOrder(req, res, next){
 
 
 export async function postQuizOrder(req, res, next){
-    const quizId = req.query.quizId;
-    const quizOrder = req.query.quizOrder;
-
+    const quizId = Number(req.query.quizId);
+    const quizOrder = Number(req.query.quizOrder);
     
     if(!quizId){
         return res.sendStatus(404);
