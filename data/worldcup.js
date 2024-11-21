@@ -7,19 +7,33 @@ export async function getTitles(round, gameId){
         )
         .then((result)=>result[0])
         .catch((error)=> 
-        console.log(`Error Message : ${error}, Date : ${new Date()}`)
+            console.log(`Error Message : ${error}, Date : ${new Date()}`)
     );
 }
 
 export async function postWorldcupResultData(id,gameId){
-    return db 
-    .execute(
-        `UPDATE worldcup SET win = worldcup.win + 1 WHERE id = ${id} and game_id = ${gameId};` 
-    )
-    .then()
-    .catch((error) => 
-        console.log(`Error Message : ${error}, Date : ${new Date()}`)
-    );
+    try {
+        const [result] = await db.execute(
+            `UPDATE worldcup SET win = worldcup.win + 1 WHERE id = ? and game_id = ?;`,
+            [id, gameId]
+        );
+
+        if (result.affectedRows > 0) {
+            return {
+                status: "success",
+                message: `${result.affectedRows} row(s) updated.`,
+                changedRows: result.changedRows
+            };
+        } else {
+            return {
+                status: "warning",
+                message: "No rows were updated."
+            };
+        }
+    } catch (error) {
+        console.log(`Error Message : ${error}, Date : ${new Date()}`);
+        throw error; 
+    }
 }
 
 
