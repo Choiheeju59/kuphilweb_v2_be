@@ -17,8 +17,8 @@ export async function getQuizOrder(req, res, next){
 
 
 export async function postQuizOrder(req, res, next){
-    const quizId = Number(req.query.quizId);
-    const quizOrder = Number(req.query.quizOrder);
+    const quizId = req.query.quizId;
+    const quizOrder = req.query.quizOrder;
     
     if(!quizId){
         return res.sendStatus(404);
@@ -29,5 +29,4 @@ export async function postQuizOrder(req, res, next){
 
     const data = await quizRepository.postUserLevelByQuizOrder(quizId, quizOrder);
     res.status(200).json(data)
-
 }

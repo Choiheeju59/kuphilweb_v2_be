@@ -24,11 +24,14 @@ var corsOptions = {
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 };
 
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(morgan("tiny"));
 
 // 사용할 라우터 호출 메서드
@@ -43,17 +46,14 @@ app.use('/api/v1/etc/test', testRouter);
 app.use('/api/v1/etc/quiz', quizRouter);
 app.use('/api/v1/admin', adminRouter);
 
-//404 에러처리
-app.use((error, req, res, next) => {
-  const err = new Error("NOT FOUND");
-  err.status = 404;
-  next(error);
+// 404 에러 처리
+app.use((req, res, next) => {
+  res.status(404).json({ error: "Not Found" });
 });
 
-//500 에러처리 미들웨어
+// 500 에러 처리 미들웨어
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({"err": err});
+  res.status(err.status || 500).json({ error: err.message || "Internal Server Error" });
 });
 
 

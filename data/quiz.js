@@ -23,13 +23,27 @@ export async function getUserLevelByQuizOrder(quizId, quizOrder){
 
 // 사용자가 문제를 틀리기 전, 마지막으로 맞힌 문제번호를 저장 (통계용)
 export async function postUserLevelByQuizOrder(quizId, quizOrder){
-    return db 
-        .execute(
-            `UPDATE quiz SET num = quiz.num + 1 WHERE quiz_id = ${quizId} and quiz_order = ${quizOrder};`
-        )
-        .then()
-        .catch((error) => 
-            console.log(`Error Message : ${error}, Date : ${new Date()}`)
+    try {
+        const [result] = await db.execute(
+            `UPDATE quiz SET num = quiz.num + 1 WHERE quiz_id = ? AND quiz_order = ?`, 
+            [quizId, quizOrder]
         );
+
+        if (result.affectedRows > 0) {
+            return {
+                status: "success",
+                message: `${result.affectedRows} row(s) updated.`,
+                changedRows: result.changedRows
+            };
+        } else {
+            return {
+                status: "warning",
+                message: "No rows were updated."
+            };
+        }
+    } catch (error) {
+        console.log(`Error Message : ${error}, Date : ${new Date()}`);
+        throw error; 
+    }
 }
 
